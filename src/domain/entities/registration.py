@@ -1,6 +1,6 @@
 from datetime import date
-from src.domain.entities.value_objects.email import Email
-from src.domain.entities.value_objects.cpf import Cpf
+from src.domain.value_objects.email import Email
+from src.domain.value_objects.cpf import Cpf
 
 
 class Registration:
