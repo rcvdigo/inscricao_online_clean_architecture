@@ -18,41 +18,41 @@ class Registration:
         self.__birth_date = birth_date
 
     @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         return self.__name
     
     @property
-    def name(self, value: str) -> None:
+    def set_name(self, value: str) -> None:
         self.__name = value
 
     @property
-    def email(self) -> Email:
+    def get_email(self) -> Email:
         return self.__email
     
     @property
-    def email(self, value: Email) -> None:
+    def set_email(self, value: Email) -> None:
         self.__email = value
 
     @property
-    def registration_number(self) -> Cpf:
+    def get_registration_number(self) -> Cpf:
         return self.__registration_number
     
     @property
-    def registration_number(self, value: Cpf) -> None:
+    def set_registration_number(self, value: Cpf) -> None:
         self.__registration_number = value
 
     @property
-    def registration_at(self) -> str:
+    def get_registration_at(self) -> str:
         return self.__registration_at
     
     @property
-    def registration_at(self, value: str) -> None:
+    def set_registration_at(self, value: str) -> None:
         self.__registration_at = value
 
     @property
-    def birth_date(self) -> str:
+    def get_birth_date(self) -> str:
         return self.__birth_date
     
     @property
-    def birth_date(self, value: str) -> None:
+    def set_birth_date(self, value: str) -> None:
         self.__birth_date = value
