@@ -16,5 +16,5 @@ def test():
     print()
     print(a.get_birth_date)
     print(a.get_registration_at)
-
-    pdf.generate(registration=a)
+    print(pdf.generate(registration=a))
+    print(type(pdf.generate(registration=a)))

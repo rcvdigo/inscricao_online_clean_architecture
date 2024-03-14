@@ -7,6 +7,6 @@ def config() -> Dict[str, Dict[str, str]]:
             'host': 'localhost',
             'user': 'root',
             'password': 'root',
-            'database': 'clean_database'
+            'database': 'clean_arch'
         }
     }

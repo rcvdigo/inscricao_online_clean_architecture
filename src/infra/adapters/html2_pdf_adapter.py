@@ -14,9 +14,14 @@ class Html2PdfAdapter(ExportRegistrationPdfExporter):
         html_content = f"""
         <p>Nome: {registration.get_name}</p>
         <p>CPF: {registration.get_registration_number}</p>
+        <p>E-mail: {registration.get_email}</p>
+        <p>Data de nascimento: {registration.get_birth_date}</p>
+        <p>Data de registro: {registration.get_registration_at}</p>
         """
+        wkhtml_path = self.__html2pdf.configuration(
+            wkhtmltopdf = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"
+            )
         pdf_options = {
-            'path': r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
             'page-size': 'A4',
             'margin-top': '0.75in',
             'margin-right': '0.75in',
@@ -24,23 +29,17 @@ class Html2PdfAdapter(ExportRegistrationPdfExporter):
             'margin-left': '0.75in',
             'encoding': 'UTF-8',
             'no-outline': None,
-            '--font-family': 'Arial',
             }
         try:
             # Converter HTML para PDF
-            pdf=self.__html2pdf.from_string(
-                input=html_content,
-                options=pdf_options,
-                output_path='output.pdf'
-                )
-            # Ler o conteúdo do PDF convertido
-            # with open('output.pdf', 'rb') as f:
-                # pdf_content= f.read()
-
-            return pdf
-            # return pdf_content.decode('utf-8')  # Retorna o conteúdo do PDF como uma string
+            pdf_content = self.__html2pdf.from_string(
+                input=html_content, # Conteudo a ser convertido em PDF
+                configuration=wkhtml_path, # Indicando o local de arquivo do gerador de PDF
+                options=pdf_options, # Aplicar as configurações da folha no PDF
+                # output_path='public/output.pdf', # Linha que faz gerar o arquivo PDF
+                cover_first=False # Não gerar capa
+                ).decode('latin-1').encode('utf-8').decode('utf-8')
+            
+            return pdf_content # Retorna o conteúdo do PDF como uma bytes
         except Exception as e:
-            # Formatar a mensagem de exceção e retornar
-            # formatter = ExceptionFormatter(e)
-            # return formatter.get_html_message()
             raise e

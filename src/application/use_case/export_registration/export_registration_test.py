@@ -4,7 +4,7 @@ from pathlib import Path
 from .export_registration import ExportRegistration
 from .input_boundary import InputBoundary
 from src.infra.repositories.mysql.pdo_registration_repository import PdoRegistrationRepository
-
+from src.infra.adapters.html2_pdf_adapter import Html2PdfAdapter
 
 def test():
 
@@ -12,7 +12,7 @@ def test():
 
     # Use Cases
     load_registration_repository = PdoRegistrationRepository(pdo=mysql.connector)
-    # pdf_exporter = ExportRegistrationPdfExporter()
+    pdf_exporter = Html2PdfAdapter()
     # storage = Storage()
 
     export_registration_use_case = ExportRegistration(
