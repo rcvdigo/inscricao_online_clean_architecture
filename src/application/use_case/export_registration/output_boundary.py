@@ -2,6 +2,10 @@ class OutputBoundary:
     def __init__(self, full_file_name: str):
         self.__full_file_name = full_file_name
 
+    @property
+    def get_full_file_name(self) -> str:
+        return self.__full_file_name
+
     # def __init__(self, values):
     #     self.__name = values.get('name', '')
     #     self.__email = values.get('email', '')

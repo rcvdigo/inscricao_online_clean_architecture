@@ -7,5 +7,5 @@ class ExportRegistrationPdfExporter(ABC):
     @abstractmethod
     def generate(self,
                  registration: Registration
-                 ) -> str:
+                 ) -> bytes:
         pass

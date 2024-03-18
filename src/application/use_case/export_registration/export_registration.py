@@ -1,3 +1,4 @@
+import os
 from .input_boundary import InputBoundary
 from .output_boundary import OutputBoundary
 
@@ -21,7 +22,7 @@ class ExportRegistration:
         self.__storage = storage
 
     def handle(self, input: InputBoundary) -> OutputBoundary:
-        cpf = Cpf(input.registration_number())
+        cpf = Cpf(input.registration_number)
 
         registration = self.__repository.load_registration_number(
             cpf=cpf
@@ -31,18 +32,11 @@ class ExportRegistration:
             registration=registration
         )
 
-        # file_content = self.__pdf_exporter.generate(array={
-        #     'name': registration.name(),
-        #     'email': str(registration.email()),
-        #     'birthDate': registration.birth_date(),
-        #     'registrationNumber': str(registration.registration_number()),
-        #     'registrationAt': registration.registration_at()
-        # })
-
         self.__storage.store(
-            file_name=input.pdf_file_name(),
-            path=input.path(),
+            file_name=input.pdf_file_name,
+            path=input.path,
             content=file_content
         )
-
-        return OutputBoundary(full_file_name=input.path() + '/' + input.pdf_file_name())
+        
+        full_file_name = os.path.join(input.path, input.pdf_file_name)
+        return OutputBoundary(full_file_name)

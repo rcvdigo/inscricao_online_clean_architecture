@@ -8,6 +8,6 @@ class Storage(ABC):
     def store(self,
               file_name: str,
               path: str,
-              content: str
+              content: bytes
               ) -> Any:
         pass

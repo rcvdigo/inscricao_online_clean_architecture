@@ -10,7 +10,7 @@ class Html2PdfAdapter(ExportRegistrationPdfExporter):
 
     def generate(self,
                  registration: Registration
-                 ) -> str:
+                 ) -> bytes:
         html_content = f"""
         <p>Nome: {registration.get_name}</p>
         <p>CPF: {registration.get_registration_number}</p>
@@ -38,8 +38,7 @@ class Html2PdfAdapter(ExportRegistrationPdfExporter):
                 options=pdf_options, # Aplicar as configurações da folha no PDF
                 # output_path='public/output.pdf', # Linha que faz gerar o arquivo PDF
                 cover_first=False # Não gerar capa
-                ).decode('latin-1').encode('utf-8').decode('utf-8')
-            
+                )
             return pdf_content # Retorna o conteúdo do PDF como uma bytes
         except Exception as e:
             raise e

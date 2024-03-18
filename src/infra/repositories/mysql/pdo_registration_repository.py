@@ -3,6 +3,7 @@ from config.app import config
 from src.domain.entities.registration import Registration
 from src.domain.repositories.load_registration_repository import LoadRegistrationRepository
 from src.domain.value_objects.cpf import Cpf
+from src.domain.exceptions.registration_not_found_exception import RegistrationNotFoundException
 
 
 class PdoRegistrationRepository(LoadRegistrationRepository):
@@ -26,11 +27,14 @@ class PdoRegistrationRepository(LoadRegistrationRepository):
         
         record = self.__cursor.fetchone()
 
+        if not record:
+            raise RegistrationNotFoundException(cpf)
+
         registration = Registration(
             name=record[0],
             email=record[1],
-            birth_date=record[2],
-            registration_number=record[3],
+            registration_number=record[2],
+            birth_date=record[3],
             registration_at=record[4]
         )
         
